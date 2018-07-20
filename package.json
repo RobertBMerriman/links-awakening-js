@@ -1,0 +1,17 @@
+{
+  "name": "links-awakening-js",
+  "version": "1.0.0",
+  "description": "Link's Awakening clone in Javascript",
+  "main": "index.js",
+  "scripts": {
+     "start": "serve ./public",
+     "start2": "serve ./public -p 5001",
+     "test": "echo \"Error: no test specified\" && exit 1"
+   },
+  "repository": "git@github.com:RobertBMerriman/links-awakening-js.git",
+  "author": "Robert Merriman <robertbmerriman@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^9.2.0"
+  }
+}
