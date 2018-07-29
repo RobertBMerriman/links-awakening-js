@@ -1,0 +1,12 @@
+{
+  "imageUrl": "/img/tiles.png",
+  "tileWidth": 16,
+  "tileHeight": 16,
+
+  "tiles": [
+    {
+      "name": "ground",
+      "pos": [0, 0]
+    }
+  ]
+}

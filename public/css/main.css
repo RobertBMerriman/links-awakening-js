@@ -1,0 +1,10 @@
+#screen {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+
+  width: calc(160px * 4);
+  display: block;
+  margin: 0 auto;
+}

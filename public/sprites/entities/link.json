@@ -1,0 +1,87 @@
+{
+  "pos": [52, 52],
+  "size": [16, 16],
+  "traits": ["Walk"],
+  "drawLayer": "player",
+  "sprite": {
+    "imageUrl": "/img/link.png",
+
+    "frames": [
+      {
+        "name": "walk-left-1",
+        "pos": [4, 36],
+        "size": [16, 16]
+      },
+      {
+        "name": "walk-left-2",
+        "pos": [20, 36],
+        "size": [16, 16]
+      },
+      {
+        "name": "walk-down-1",
+        "pos": [35, 36],
+        "size": [16, 16]
+      },
+      {
+        "name": "walk-down-2",
+        "pos": [50, 36],
+        "size": [16, 16]
+      },
+      {
+        "name": "walk-up-1",
+        "pos": [65, 36],
+        "size": [16, 16]
+      },
+      {
+        "name": "walk-up-2",
+        "pos": [79, 36],
+        "size": [16, 16]
+      },
+      {
+        "name": "walk-right-1",
+        "pos": [94, 36],
+        "size": [16, 16]
+      },
+      {
+        "name": "walk-right-2",
+        "pos": [110, 36],
+        "size": [16, 16]
+      }
+    ],
+
+    "animations": [
+      {
+        "name": "walk-left",
+        "frameDuration": 0.14,
+        "frames": [
+          "walk-left-1",
+          "walk-left-2"
+        ]
+      },
+      {
+        "name": "walk-down",
+        "frameDuration": 0.14,
+        "frames": [
+          "walk-down-1",
+          "walk-down-2"
+        ]
+      },
+      {
+        "name": "walk-up",
+        "frameDuration": 0.14,
+        "frames": [
+          "walk-up-1",
+          "walk-up-2"
+        ]
+      },
+      {
+        "name": "walk-right",
+        "frameDuration": 0.14,
+        "frames": [
+          "walk-right-1",
+          "walk-right-2"
+        ]
+      }
+    ]
+  }
+}
