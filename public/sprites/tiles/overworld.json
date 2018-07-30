@@ -1,0 +1,80 @@
+{
+  "imageUrl": "/img/overworld tiles.png",
+  "tileWidth": 16,
+  "tileHeight": 16,
+  "tileGap": 1,
+  "startPos": [1, 1],
+
+  "tiles": [
+    {
+      "name": "roof-grey-ul",
+      "pos": [6, 1]
+    },
+    {
+      "name": "roof-grey-uc",
+      "pos": [7, 1]
+    },
+    {
+      "name": "roof-grey-ur",
+      "pos": [8, 1]
+    },
+    {
+      "name": "roof-grey-ll",
+      "pos": [6, 2]
+    },
+    {
+      "name": "roof-grey-lc",
+      "pos": [7, 2]
+    },
+    {
+      "name": "roof-grey-lr",
+      "pos": [8, 2]
+    },
+
+    {
+      "name": "grass-center",
+      "pos": [1, 6]
+    },
+    {
+      "name": "ridge-center",
+      "pos": [4, 9]
+    },
+    {
+      "name": "marsh-ridge-center",
+      "pos": [1, 9]
+    },
+    {
+      "name": "tall-grass",
+      "pos": [13, 9]
+    },
+    {
+      "name": "flowers-1",
+      "pos": [16, 15]
+    },
+    {
+      "name": "flowers-2",
+      "pos": [17, 15]
+    },
+    {
+      "name": "flowers-3",
+      "pos": [18, 15]
+    },
+    {
+      "name": "flowers-4",
+      "pos": [19, 15]
+    }
+  ],
+
+  "animations": [
+    {
+      "name": "flowers",
+      "frameDuration": 0.25,
+      "frames": [
+        "flowers-1",
+        "flowers-2",
+        "flowers-3",
+        "flowers-4"
+      ]
+    }
+  ]
+}

@@ -25,7 +25,7 @@ context.stroke();
 
 // Replace then with load all assets needed
 // Load level with all background tiles and enemies
-Promise.all([loadLevel('overworld'), buildEntity('link')])
+Promise.all([loadLevel('village'), buildEntity('link')])
 .then(([level, link]) => {
 
   const keyManager = setupKeyboard(window, link);

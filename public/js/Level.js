@@ -129,7 +129,7 @@ export function createBackgroundLayer(level, tileSet) {
       if (col) {
         col.forEach((tile, y) => {
           if (tileSet.animations.has(tile.name)) {
-            tileSet.drawAnim(tile.name, context, x - drawFrom, y, level.totalTime);
+            tileSet.drawTileAnim(tile.name, context, x - drawFrom, y, level.totalTime);
           } else {
             tileSet.drawTile(tile.name, context, x - drawFrom, y);
           }

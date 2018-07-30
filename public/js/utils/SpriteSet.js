@@ -4,10 +4,13 @@ import {createAnimation} from "./animation.js";
 // TODO Save collision data to sprite???
 // TODO Different sprite set class for tile and entities?
 class SpriteSet {
-  constructor(image, tileWidth, tileHeight) {
+  constructor(image, tileWidth, tileHeight, tileGap = 0, startPos = [0, 0]) {
     this.image = image;
     this.width = tileWidth;
     this.height = tileHeight;
+    this.tileGap = tileGap;
+    this.startPos = startPos;
+
     this.sprites = new Map();
     this.animations = new Map();
   }
@@ -30,7 +33,9 @@ class SpriteSet {
   }
 
   defineTile(name, x, y) {
-    this.define(name, x * this.width, y * this.height, this.width, this.height);
+    const xAdjust = x * this.tileGap + this.startPos[0];
+    const yAdjust = y * this.tileGap + this.startPos[1];
+    this.define(name, x * this.width + xAdjust, y * this.height + yAdjust, this.width, this.height);
   }
 
   draw(name, context, x, y) {
@@ -60,11 +65,18 @@ export function loadTileSpriteSheet(name) {
       loadImage(sheetSpec.imageUrl),
     ]))
     .then(([sheetSpec, image]) => {
-      const spriteSet = new SpriteSet(image, sheetSpec.tileWidth, sheetSpec.tileHeight);
+      const spriteSet = new SpriteSet(image, sheetSpec.tileWidth, sheetSpec.tileHeight, sheetSpec.tileGap, sheetSpec.startPos);
 
       if (sheetSpec.tiles) {
         sheetSpec.tiles.forEach(tileSpec => {
           spriteSet.defineTile(tileSpec.name, tileSpec.pos[0], tileSpec.pos[1]);
+        });
+      }
+
+      if (sheetSpec.animations) {
+        sheetSpec.animations.forEach(animSpec => {
+          const animation = createAnimation(animSpec.frames, animSpec.frameDuration);
+          spriteSet.defineAnim(animSpec.name, animation);
         });
       }
 
