@@ -4,7 +4,7 @@
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 
-  width: calc(160px * 4);
+  width: calc(160px * 3.4);
   display: block;
   margin: 0 auto;
 }

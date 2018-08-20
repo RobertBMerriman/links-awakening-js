@@ -29,6 +29,12 @@ export default function setupKeyboard(listeningElement, playerEntity) {
     });
   });
 
+  ["KeyX", "KeyK"].forEach(code => {
+    keyManager.addMapping(code, (keyState) => {
+      playerEntity.sword.keyDown += keyState ? 1 : -1;
+    });
+  });
+
   return keyManager;
 }
 

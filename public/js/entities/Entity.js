@@ -2,29 +2,26 @@ import {Vec2} from "../utils/math.js";
 import {loadEntitySpriteSet} from "../utils/SpriteSet.js";
 import {loadJson} from "../utils/loadData.js";
 import Walk from "./traits/Walk.js";
+import Sword from "./traits/Sword.js";
 
 // TODO Unsure about this Trait pattern
 
-export class Trait {
-
-  constructor(name) {
-    this.name = name;
-  }
-
-  update() {
-    console.warn('Unhandled update call in Trait: ' + this.name);
-  }
-
-}
+export const Sides = {
+  TOP: Symbol('top'),
+  BOTTOM: Symbol('bottom'),
+  LEFT: Symbol('left'),
+  RIGHT: Symbol('right')
+};
 
 export class Entity {
 
   constructor(name, sheetSpec) {
     this.name = name;
     //this.sheetSpec = sheetSpec;
-    this.pos = sheetSpec.pos ? new Vec2(sheetSpec.pos[0], sheetSpec.pos[1]) : new Vec2(0, 0);;
+    this.pos = sheetSpec.pos ? new Vec2(sheetSpec.pos[0], sheetSpec.pos[1]) : new Vec2(0, 0);
     this.vel = sheetSpec.vel ? new Vec2(sheetSpec.vel[0], sheetSpec.vel[1]) : new Vec2(0, 0);
     this.size = sheetSpec.size ? new Vec2(sheetSpec.size[0], sheetSpec.size[1]) : new Vec2(0, 0);
+    this.offset = sheetSpec.offset ? new Vec2(sheetSpec.offset[0], sheetSpec.offset[1]) : new Vec2(0, 0);
 
     this.traits = [];
     sheetSpec.traits.forEach(trait => {
@@ -32,10 +29,23 @@ export class Entity {
     });
   }
 
+  // TODO COMPUTED VALUE
+  centerpoint() {
+    return new Vec2(this.pos.x + this.offset.x + this.size.x / 2, this.pos.y + this.offset.y + this.size.y / 2)
+  }
+
   addTrait(trait) {
     this.traits.push(trait);
     this[trait.name] = trait;
   }
+
+  obstruct(side) {
+    if (this.walk) {
+      this.walk.obstruct(this, side);
+    }
+  }
+
+
 
   update(deltaTime) {
     this.traits.forEach(trait => {
@@ -49,8 +59,10 @@ export class Entity {
 
 }
 
+// TODO Need to read these in a better way
 const traitClassMap = {
   Walk: () => new Walk(),
+  Sword: () => new Sword(),
 };
 
 
@@ -65,7 +77,6 @@ export function buildEntity(name) {
 
       entity.draw = function drawEntity(context) {
 
-        // Route walking down animation
         // ✔️Create animation sets in json
         // Connect logic to animation sets
 
@@ -81,7 +92,10 @@ export function buildEntity(name) {
 
       };
 
-      return entity;
+      return (level) => {
+        entity.level = level;
+        return entity;
+      }
     });
 }
 

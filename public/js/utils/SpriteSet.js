@@ -13,30 +13,51 @@ class SpriteSet {
 
     this.sprites = new Map();
     this.animations = new Map();
+
+    this.spriteData = new Map();
   }
 
-  defineAnim(name, animation) {
-    this.animations.set(name, animation);
-  }
 
-  define(name, x, y, width, height) {
+  define(spriteSpec, width, height) {
     const buffer = document.createElement('canvas');
     buffer.width = width;
     buffer.height = height;
     buffer.getContext('2d')
       .drawImage(
         this.image,
-        x, y, width, height, // Position and dimensions on the source image to take sub image from - (Sub rectangle)
+        spriteSpec.pos[0], spriteSpec.pos[1], width, height, // Position and dimensions on the source image to take sub image from - (Sub rectangle)
         0, 0, width, height, // Position and dimensions to draw sub image onto the canvas          - (Dimension rectangle)
       );
-    this.sprites.set(name, buffer);
+    this.sprites.set(spriteSpec.name, buffer);
+
+    const {name, ...data} = spriteSpec;
+    this.spriteData.set(name, data);
   }
 
-  defineTile(name, x, y) {
+  defineAnim(animSpec, animation) {
+    this.animations.set(animSpec.name, animation);
+
+    const {name, ...data} = animSpec;
+    this.spriteData.set(name, data);
+  }
+
+  defineTile(tileSpec) {
+    const x = tileSpec.pos[0];
+    const y = tileSpec.pos[1];
     const xAdjust = x * this.tileGap + this.startPos[0];
     const yAdjust = y * this.tileGap + this.startPos[1];
-    this.define(name, x * this.width + xAdjust, y * this.height + yAdjust, this.width, this.height);
+    const newSpec = {...tileSpec};
+    newSpec.pos = [x * this.width + xAdjust, y * this.height + yAdjust];
+    this.define(newSpec, this.width, this.height);
   }
+
+  defineTileAnim(animSpec, animation) {
+    this.animations.set(animSpec.name, animation);
+
+    const {name, ...data} = animSpec;
+    this.spriteData.set(name, data);
+  }
+
 
   draw(name, context, x, y) {
     const buffer = this.sprites.get(name);
@@ -69,14 +90,14 @@ export function loadTileSpriteSheet(name) {
 
       if (sheetSpec.tiles) {
         sheetSpec.tiles.forEach(tileSpec => {
-          spriteSet.defineTile(tileSpec.name, tileSpec.pos[0], tileSpec.pos[1]);
+          spriteSet.defineTile(tileSpec);
         });
       }
 
       if (sheetSpec.animations) {
         sheetSpec.animations.forEach(animSpec => {
           const animation = createAnimation(animSpec.frames, animSpec.frameDuration);
-          spriteSet.defineAnim(animSpec.name, animation);
+          spriteSet.defineTileAnim(animSpec, animation);
         });
       }
 
@@ -92,14 +113,14 @@ export function loadEntitySpriteSet(spriteSpec) {
 
       if (spriteSpec.frames) {
         spriteSpec.frames.forEach(frameSpec => {
-          spriteSet.define(frameSpec.name, ...frameSpec.pos, ...frameSpec.size);
+          spriteSet.define(frameSpec, ...frameSpec.size);
         });
       }
 
       if (spriteSpec.animations) {
         spriteSpec.animations.forEach(animSpec => {
           const animation = createAnimation(animSpec.frames, animSpec.frameDuration);
-          spriteSet.defineAnim(animSpec.name, animation);
+          spriteSet.defineAnim(animSpec, animation);
         });
       }
 

@@ -2,12 +2,17 @@ import {res} from "./main.js";
 import {loadTileSpriteSheet} from "./utils/SpriteSet.js";
 import {loadJson} from "./utils/loadData.js";
 import {Matrix} from "./utils/math.js";
+import TileCollider from "./levels/TileCollider.js";
 
 export default class Level {
 
   constructor(levelSpec, tileSet) {
+    this.levelSpec = levelSpec;
+    this.tileSet = tileSet;
+
     this.entities = new Set();
     this.tiles = this.createTiles(levelSpec.tiles);
+    this.tileCollider = new TileCollider(this.tiles, tileSet);
 
     this.layers = [
       createBackgroundLayer(this, tileSet),
@@ -23,9 +28,12 @@ export default class Level {
     this.entities.forEach(entity => {
       entity.update(deltaTime);
 
-      // Movement
+      // Movement and collision checks
       entity.pos.x += entity.vel.x * deltaTime;
+      this.tileCollider.checkX(entity);
+
       entity.pos.y += entity.vel.y * deltaTime;
+      this.tileCollider.checkY(entity);
     });
   }
 
@@ -35,37 +43,36 @@ export default class Level {
     })
   }
 
-  createTiles(backgrounds) {
+  createTiles(tileSpec) {
     const tiles = new Matrix();
 
-    function applyRange(background, xStart, xLength, yStart, yLength) {
+    function applyRange(tileObj, xStart, xLength, yStart, yLength) {
       const xEnd = xStart + xLength;
       const yEnd = yStart + yLength;
       for (let x = xStart; x < xEnd; ++x) {
         for (let y = yStart; y < yEnd; ++y) {
-          if (background.pattern) {
-            console.log(background.pattern);
+          if (tileObj.pattern) {
+            console.log(tileObj.pattern);
           } else {
             tiles.set(x, y, {
-              name: background.tile,
-              type: background.type,
+              name: tileObj.tile,
             });
           }
         }
       }
     }
 
-    backgrounds.forEach((background) => {
-      background.ranges.forEach((range) => {
+    tileSpec.forEach((tileObj) => {
+      tileObj.ranges.forEach((range) => {
         if (range.length === 4) {
           const [xStart, xLength, yStart, yLength] = range;
-          applyRange(background, xStart, xLength, yStart, yLength);
+          applyRange(tileObj, xStart, xLength, yStart, yLength);
         } else if (range.length === 3) {
           const [xStart, xLength, yStart] = range;
-          applyRange(background, xStart, xLength, yStart, 1);
+          applyRange(tileObj, xStart, xLength, yStart, 1);
         } else if (range.length === 2) {
           const [xStart, yStart] = range;
-          applyRange(background, xStart, 1, yStart, 1);
+          applyRange(tileObj, xStart, 1, yStart, 1);
         }
       });
     });

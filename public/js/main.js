@@ -6,7 +6,7 @@ import {buildEntity} from "./entities/Entity.js";
 import {loadLevel} from "./Level.js";
 
 
-export const res = {w: 160, h: 144};
+export const res = {w: 160, h: 144}; // 10 x 9 tile size (technically 10 x 8 for world cos last 'tile' is the menu bar)
 
 // Setup
 const canvas = document.getElementById('screen');
@@ -23,10 +23,18 @@ context.lineWidth = 1;
 context.rect(0, 0, res.w, res.h);
 context.stroke();
 
+// To show menu box
+context.beginPath();
+context.fillStyle = '#FFFF8B';
+context.fillRect(0, Math.round(res.h / 9 * 8), res.w, res.h / 9);
+context.stroke();
+
 // Replace then with load all assets needed
 // Load level with all background tiles and enemies
 Promise.all([loadLevel('village'), buildEntity('link')])
-.then(([level, link]) => {
+.then(([level, levellessLink]) => {
+  // TODO Handling level scope?????????
+  const link = levellessLink(level);
 
   const keyManager = setupKeyboard(window, link);
 
@@ -45,9 +53,6 @@ Promise.all([loadLevel('village'), buildEntity('link')])
   };
 
   timer.draw = function draw() {
-    context.beginPath();
-    context.clearRect(1, 1, res.w - 2, res.h - 2);
-    context.stroke();
     level.draw(context, camera);
   };
 

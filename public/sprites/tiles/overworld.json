@@ -6,74 +6,343 @@
   "startPos": [1, 1],
 
   "tiles": [
+
     {
-      "name": "roof-grey-ul",
-      "pos": [6, 1]
-    },
-    {
-      "name": "roof-grey-uc",
-      "pos": [7, 1]
-    },
-    {
-      "name": "roof-grey-ur",
-      "pos": [8, 1]
-    },
-    {
-      "name": "roof-grey-ll",
-      "pos": [6, 2]
-    },
-    {
-      "name": "roof-grey-lc",
-      "pos": [7, 2]
-    },
-    {
-      "name": "roof-grey-lr",
-      "pos": [8, 2]
+      "name": "wood-house",
+      "pos": [1, 2]
     },
 
     {
-      "name": "grass-center",
-      "pos": [1, 6]
+      "name": "stone-door",
+      "pos": [2, 2],
+      "walkable": true
+    },
+
+    {
+      "name": "roof-grey-ul",
+      "pos": [6, 0]
     },
     {
-      "name": "ridge-center",
-      "pos": [4, 9]
+      "name": "roof-grey-uc",
+      "pos": [7, 0]
     },
     {
-      "name": "marsh-ridge-center",
-      "pos": [1, 9]
+      "name": "roof-grey-ur",
+      "pos": [8, 0]
+    },
+    {
+      "name": "roof-grey-ll",
+      "pos": [6, 1]
+    },
+    {
+      "name": "roof-grey-lc",
+      "pos": [7, 1]
+    },
+    {
+      "name": "roof-grey-lr",
+      "pos": [8, 1]
+    },
+
+    {
+      "name": "grass-ul",
+      "pos": [0, 5],
+      "walkable": true
+    },
+    {
+      "name": "grass-uc",
+      "pos": [1, 5],
+      "walkable": true
+    },
+    {
+      "name": "grass-ur",
+      "pos": [2, 5],
+      "walkable": true
+    },
+    {
+      "name": "grass-ml",
+      "pos": [0, 6],
+      "walkable": true
+    },
+    {
+      "name": "grass-mc",
+      "pos": [1, 6],
+      "walkable": true
+    },
+    {
+      "name": "grass-mr",
+      "pos": [2, 6],
+      "walkable": true
+    },
+    {
+      "name": "grass-ll",
+      "pos": [0, 7],
+      "walkable": true
+    },
+    {
+      "name": "grass-lc",
+      "pos": [1, 7],
+      "walkable": true
+    },
+    {
+      "name": "grass-lr",
+      "pos": [2, 7],
+      "walkable": true
+    },
+
+
+    {
+      "name": "path-mc",
+      "pos": [4, 9],
+      "walkable": true
+    },
+    {
+      "name": "marsh-path-mc",
+      "pos": [1, 9],
+      "walkable": true
     },
     {
       "name": "tall-grass",
-      "pos": [13, 9]
+      "pos": [13, 9],
+      "walkable": true
     },
     {
       "name": "flowers-1",
-      "pos": [16, 15]
+      "pos": [16, 15],
+      "walkable": true
     },
     {
       "name": "flowers-2",
-      "pos": [17, 15]
+      "pos": [17, 15],
+      "walkable": true
     },
     {
       "name": "flowers-3",
-      "pos": [18, 15]
+      "pos": [18, 15],
+      "walkable": true
     },
     {
       "name": "flowers-4",
-      "pos": [19, 15]
+      "pos": [19, 15],
+      "walkable": true
+    },
+    {
+      "name": "bush",
+      "pos": [13, 10],
+      "cuttable": {
+        "replaceWith": "path-mc"
+      }
+    },
+
+    {
+      "name": "white-water-1",
+      "pos": [20, 17]
+    },
+    {
+      "name": "white-water-2",
+      "pos": [21, 17]
+    },
+    {
+      "name": "white-water-3",
+      "pos": [22, 17]
+    },
+    {
+      "name": "white-water-4",
+      "pos": [23, 17]
+    },
+
+    {
+      "name": "pale-yellow-water-1",
+      "pos": [20, 18]
+    },
+    {
+      "name": "pale-yellow-water-2",
+      "pos": [21, 18]
+    },
+    {
+      "name": "pale-yellow-water-3",
+      "pos": [22, 18]
+    },
+    {
+      "name": "pale-yellow-water-4",
+      "pos": [23, 18]
+    },
+
+    {
+      "name": "yellow-water-1",
+      "pos": [20, 19]
+    },
+    {
+      "name": "yellow-water-2",
+      "pos": [21, 19]
+    },
+    {
+      "name": "yellow-water-3",
+      "pos": [22, 19]
+    },
+    {
+      "name": "yellow-water-4",
+      "pos": [23, 19]
+    },
+
+    {
+      "name": "dark-water-1",
+      "pos": [20, 20]
+    },
+    {
+      "name": "dark-water-2",
+      "pos": [21, 20]
+    },
+    {
+      "name": "dark-water-3",
+      "pos": [22, 20]
+    },
+    {
+      "name": "dark-water-4",
+      "pos": [23, 20]
+    },
+
+
+    {
+      "name": "cliff-ledge-ul",
+      "pos": [0, 11]
+    },
+    {
+      "name": "cliff-ledge-uc",
+      "pos": [1, 11]
+    },
+    {
+      "name": "cliff-ledge-ur",
+      "pos": [2, 11]
+    },
+    {
+      "name": "cliff-ledge-ml",
+      "pos": [0, 12]
+    },
+    {
+      "name": "cliff-ledge-mr",
+      "pos": [2, 12]
+    },
+    {
+      "name": "cliff-ledge-ll",
+      "pos": [0, 13]
+    },
+    {
+      "name": "cliff-ledge-lc",
+      "pos": [1, 13]
+    },
+    {
+      "name": "cliff-ledge-lr",
+      "pos": [2, 13]
+    },
+
+    {
+      "name": "cliff-ledge-ul-inner",
+      "pos": [3, 11]
+    },
+    {
+      "name": "cliff-ledge-ur-inner",
+      "pos": [4, 11]
+    },
+    {
+      "name": "cliff-ledge-ll-inner",
+      "pos": [3, 12]
+    },
+    {
+      "name": "cliff-ledge-lr-inner",
+      "pos": [4, 12]
+    },
+
+
+    {
+      "name": "tree-stump-l",
+      "pos": [8, 8]
+    },
+    {
+      "name": "tree-stump-r",
+      "pos": [9, 8]
+    },
+    {
+      "name": "tree-top-l-field",
+      "pos": [8, 7]
+    },
+    {
+      "name": "tree-top-r-field",
+      "pos": [9, 7]
+    },
+    {
+      "name": "tree-top-l",
+      "pos": [8, 6]
+    },
+    {
+      "name": "tree-top-r",
+      "pos": [9, 6]
+    },
+    {
+      "name": "tree-top-l-mountain",
+      "pos": [8, 5]
+    },
+    {
+      "name": "tree-top-r-mountain",
+      "pos": [9, 5]
     }
+
+
   ],
 
   "animations": [
     {
       "name": "flowers",
-      "frameDuration": 0.25,
+      "frameDuration": 0.4,
       "frames": [
         "flowers-1",
         "flowers-2",
         "flowers-3",
         "flowers-4"
+      ],
+      "walkable": true
+    },
+
+    {
+      "name": "white-water",
+      "frameDuration": 0.45,
+      "frames": [
+        "white-water-1",
+        "white-water-2",
+        "white-water-3",
+        "white-water-4"
+      ]
+    },
+
+    {
+      "name": "pale-yellow-water",
+      "frameDuration": 0.45,
+      "frames": [
+        "pale-yellow-water-1",
+        "pale-yellow-water-2",
+        "pale-yellow-water-3",
+        "pale-yellow-water-4"
+      ]
+    },
+
+    {
+      "name": "yellow-water",
+      "frameDuration": 0.45,
+      "frames": [
+        "yellow-water-1",
+        "yellow-water-2",
+        "yellow-water-3",
+        "yellow-water-4"
+      ]
+    },
+
+    {
+      "name": "dark-water",
+      "frameDuration": 0.45,
+      "frames": [
+        "dark-water-1",
+        "dark-water-2",
+        "dark-water-3",
+        "dark-water-4"
       ]
     }
   ]

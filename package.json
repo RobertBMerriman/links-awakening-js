@@ -12,6 +12,6 @@
   "author": "Robert Merriman <robertbmerriman@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "serve": "^9.2.0"
+    "serve": "^9.4.0"
   }
 }

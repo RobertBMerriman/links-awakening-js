@@ -1,6 +1,7 @@
 export default class TileResolver {
 
-  constructor(matrix, tileSize) {
+  // TODO Make this not default to 16 that's dumb and you can't change it when you want
+  constructor(matrix, tileSize=16) {
     this.matrix = matrix;
     this.tileSize = tileSize;
   }
@@ -23,16 +24,16 @@ export default class TileResolver {
   getByIndex(indexX, indexY) {
     const tile = this.matrix.get(indexX, indexY);
     if (tile) {
-      const y1 = indexY * this.tileSize;
-      const y2 = y1 + this.tileSize;
       const x1 = indexX * this.tileSize;
       const x2 = x1 + this.tileSize;
+      const y1 = indexY * this.tileSize;
+      const y2 = y1 + this.tileSize;
       return {
         tile,
-        y1,
-        y2,
         x1,
         x2,
+        y1,
+        y2,
       };
     }
   }

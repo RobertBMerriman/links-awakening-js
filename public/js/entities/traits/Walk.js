@@ -1,4 +1,5 @@
 import {Vec2} from "../../utils/math.js";
+import {Sides} from "../Entity.js";
 
 export default class Walk {
 
@@ -7,9 +8,10 @@ export default class Walk {
     this.xDir = 0;
     this.yDir = 0;
 
-    this.velocity = 3000;
+    this.velocity = 4000;
 
     this.heading = new Vec2(0, 1);
+    this.colliding = new Vec2(0, 0);
     this.distance = 0;
   }
 
@@ -26,11 +28,28 @@ export default class Walk {
     const yVel = this.velocity * deltaTime * this.yDir;
     entity.vel = this.normaliseDiagonalSpeed(xVel, yVel);
 
-    // if (this.stopped(entity.vel)) {
-    //   this.distance = 0;
-    // } else {
+    if (this.stopped(entity.vel)) {
+      this.distance = 22;
+    } else {
       this.distance += entity.vel.diag() * deltaTime;
-    // }
+    }
+
+    this.colliding.set(0, 0);
+  }
+
+  obstruct(entity, side) {
+    // Make sides into a better structure so I can map it
+    // (or change everything so 1 and -1 aren't the values I rely on)
+    if (side === Sides.BOTTOM) {
+      this.colliding.y = 1;
+    } else if (side === Sides.TOP) {
+      this.colliding.y = -1;
+    }
+    if (side === Sides.RIGHT) {
+      this.colliding.x = 1;
+    } else if (side === Sides.LEFT) {
+      this.colliding.x = -1;
+    }
   }
 
 
