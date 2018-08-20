@@ -4,8 +4,6 @@ import {loadJson} from "../utils/loadData.js";
 import Walk from "./traits/Walk.js";
 import Sword from "./traits/Sword.js";
 
-// TODO Unsure about this Trait pattern
-
 export const Sides = {
   TOP: Symbol('top'),
   BOTTOM: Symbol('bottom'),
@@ -77,17 +75,32 @@ export function buildEntity(name) {
 
       entity.draw = function drawEntity(context) {
 
-        // ✔️Create animation sets in json
-        // Connect logic to animation sets
-
+        // TODO When pushing stay on that direction????????
+        // Also keep to same direction when moving (should solve pushing thing too)
         if (entity.walk.heading.x === 1) {
-          spriteSet.drawAnim('walk-right', context, 0, 0, entity.walk.distance);
+          if (entity.walk.colliding.x === 1) {
+            spriteSet.drawAnim('push-right', context, 0, 0, entity.level.totalTime)
+          } else {
+            spriteSet.drawAnim('walk-right', context, 0, 0, entity.walk.distance);
+          }
         } else if (entity.walk.heading.x === -1) {
-          spriteSet.drawAnim('walk-left', context, 0, 0, entity.walk.distance);
+          if (entity.walk.colliding.x === -1) {
+            spriteSet.drawAnim('push-left', context, 0, 0, entity.level.totalTime)
+          } else {
+            spriteSet.drawAnim('walk-left', context, 0, 0, entity.walk.distance);
+          }
         } else if (entity.walk.heading.y === -1) {
-          spriteSet.drawAnim('walk-up', context, 0, 0, entity.walk.distance);
+          if (entity.walk.colliding.y === -1) {
+            spriteSet.drawAnim('push-up', context, 0, 0, entity.level.totalTime)
+          } else {
+            spriteSet.drawAnim('walk-up', context, 0, 0, entity.walk.distance);
+          }
         } else if (entity.walk.heading.y === 1) {
-          spriteSet.drawAnim('walk-down', context, 0, 0, entity.walk.distance);
+          if (entity.walk.colliding.y === 1) {
+            spriteSet.drawAnim('push-down', context, 0, 0, entity.level.totalTime)
+          } else {
+            spriteSet.drawAnim('walk-down', context, 0, 0, entity.walk.distance);
+          }
         }
 
       };

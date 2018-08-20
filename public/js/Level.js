@@ -40,7 +40,7 @@ export default class Level {
   draw(context, camera) {
     this.layers.forEach(drawLayer => {
       drawLayer(context, camera);
-    })
+    });
   }
 
   createTiles(tileSpec) {

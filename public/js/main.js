@@ -1,5 +1,4 @@
 import Timer from "./utils/Timer.js";
-import Level from "./Level.js";
 import Camera from "./Camera.js";
 import setupKeyboard from "./utils/Keyboard.js";
 import {buildEntity} from "./entities/Entity.js";

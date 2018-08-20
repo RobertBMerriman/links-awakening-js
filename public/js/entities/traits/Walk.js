@@ -17,11 +17,12 @@ export default class Walk {
 
   update(entity, deltaTime) {
 
-    if (this.xDir !== 0) {
+    if (this.xDir !== 0 && this.yDir === 0) {
       this.heading.x = this.xDir;
-    } else if (this.yDir !== 0) {
-      this.heading.x = 0;
+      this.heading.y = 0;
+    } else if (this.yDir !== 0 && this.xDir === 0) {
       this.heading.y = this.yDir;
+      this.heading.x = 0;
     }
 
     const xVel = this.velocity * deltaTime * this.xDir;

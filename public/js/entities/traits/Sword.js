@@ -6,17 +6,22 @@ export default class Sword {
 
     this.keyDown = 0;
     this.buttonReleased = true;
+
+    this.swordSlashTime = 0;
   }
 
   update(entity, deltaTime) {
-    // Get if entity is using sword and send cut to whatever is in front
-    // Check cuttable of that tile type and if present check for replacedBy and what tile that is
-    // Replace that tile in the tile matrix found in Level.js
     if (this.keyDown === 1 && this.buttonReleased) {
       this.buttonReleased = false;
-      this.sword(entity)
+      this.sword(entity);
+      this.swordSlashTime = 0.15;
     } else if (this.keyDown === 0 && !this.buttonReleased) {
       this.buttonReleased = true;
+    }
+
+    if (this.swordSlashTime > 0) {
+      entity.vel.set(0, 0);
+      this.swordSlashTime += -deltaTime;
     }
   }
 
@@ -38,14 +43,20 @@ export default class Sword {
     }
 
     const tileToCut = entity.level.tileCollider.tileResolver.searchByPosition(entity.centerpoint().x + xAdjust, entity.centerpoint().y + yAdjust);
-    const tileData = entity.level.tileSet.spriteData.get(tileToCut.tile.name);
-    if (tileData.cuttable) {
-      if (tileData.cuttable.replaceWith) {
-        const tileX = tileToCut.x1 / tileSize;
-        const tileY = tileToCut.y1 / tileSize;
-        entity.level.tiles.set(tileX, tileY, {
-          name: tileData.cuttable.replaceWith,
-        })
+
+    if (tileToCut) {
+      const tileData = entity.level.tileSet.spriteData.get(tileToCut.tile.name);
+
+      if (tileData) {
+        if (tileData.cuttable) {
+          if (tileData.cuttable.replaceWith) {
+            const tileX = tileToCut.x1 / tileSize;
+            const tileY = tileToCut.y1 / tileSize;
+            entity.level.tiles.set(tileX, tileY, {
+              name: tileData.cuttable.replaceWith,
+            })
+          }
+        }
       }
     }
   }

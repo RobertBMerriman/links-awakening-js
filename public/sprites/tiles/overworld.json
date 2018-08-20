@@ -103,7 +103,10 @@
     {
       "name": "tall-grass",
       "pos": [13, 9],
-      "walkable": true
+      "walkable": true,
+      "cuttable": {
+        "replaceWith": "path-mc"
+      }
     },
     {
       "name": "flowers-1",
