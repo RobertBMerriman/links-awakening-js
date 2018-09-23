@@ -49,13 +49,23 @@ export default class Sword {
 
       if (tileData) {
         if (tileData.cuttable) {
+
+          // TODO Shouldn't have to divide by tile size 😡😡😡
+          const tileX = tileToCut.x1 / tileSize;
+          const tileY = tileToCut.y1 / tileSize;
+
           if (tileData.cuttable.replaceWith) {
-            const tileX = tileToCut.x1 / tileSize;
-            const tileY = tileToCut.y1 / tileSize;
             entity.level.tiles.set(tileX, tileY, {
               name: tileData.cuttable.replaceWith,
             })
           }
+
+          // TODO Centerpoint function pls
+          // Effect is being shown in the right place based on knowing the size of the tile and effect, centerpoints should solve that issue
+          if (tileData.cuttable.effect) {
+            entity.level.showEffect(tileToCut.x1 - tileSize / 2, tileToCut.y1 - tileSize / 2, tileData.cuttable.effect)
+          }
+
         }
       }
     }

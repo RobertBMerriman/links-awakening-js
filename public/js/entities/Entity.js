@@ -105,6 +105,7 @@ export function buildEntity(name) {
 
       };
 
+      // TODO 🚨 HACK ALERT 🚨
       return (level) => {
         entity.level = level;
         return entity;

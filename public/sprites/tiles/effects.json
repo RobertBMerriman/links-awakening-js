@@ -1,0 +1,62 @@
+{
+  "imageUrl": "/img/effects.png",
+  "tileWidth": 32,
+  "tileHeight": 32,
+  "tileGap": 0,
+  "startPos": [0, 0],
+
+  "tiles": [
+
+    {
+      "name": "leaf-1",
+      "pos": [0, 0]
+    },
+    {
+      "name": "leaf-2",
+      "pos": [1, 0]
+    },
+    {
+      "name": "leaf-3",
+      "pos": [2, 0]
+    },
+    {
+      "name": "leaf-4",
+      "pos": [3, 0]
+    },
+    {
+      "name": "leaf-5",
+      "pos": [4, 0]
+    },
+    {
+      "name": "leaf-6",
+      "pos": [5, 0]
+    },
+    {
+      "name": "leaf-7",
+      "pos": [6, 0]
+    },
+    {
+      "name": "leaf-8",
+      "pos": [7, 0]
+    }
+
+  ],
+
+  "animations": [
+    {
+      "name": "leaves",
+      "frameDuration": 0.1,
+      "frames": [
+        "leaf-1",
+        "leaf-2",
+        "leaf-3",
+        "leaf-4",
+        "leaf-5",
+        "leaf-6",
+        "leaf-7",
+        "leaf-8"
+      ],
+      "walkable": true
+    }
+  ]
+}

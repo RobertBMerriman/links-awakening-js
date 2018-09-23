@@ -33,6 +33,7 @@ context.stroke();
 Promise.all([loadLevel('village'), buildEntity('link')])
 .then(([level, levellessLink]) => {
   // TODO Handling level scope?????????
+  // TODO 🚨 WUH OH HACK ALERT 🚨
   const link = levellessLink(level);
 
   const keyManager = setupKeyboard(window, link);

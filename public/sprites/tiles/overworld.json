@@ -105,7 +105,8 @@
       "pos": [13, 9],
       "walkable": true,
       "cuttable": {
-        "replaceWith": "path-mc"
+        "replaceWith": "path-mc",
+        "effect": "leaves"
       }
     },
     {
@@ -132,7 +133,8 @@
       "name": "bush",
       "pos": [13, 10],
       "cuttable": {
-        "replaceWith": "path-mc"
+        "replaceWith": "path-mc",
+        "effect": "leaves"
       }
     },
 
