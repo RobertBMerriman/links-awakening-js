@@ -5,6 +5,8 @@
 export default function setupKeyboard(listeningElement, playerEntity) {
   const keyManager = new KeyManager(listeningElement);
 
+  // TODO Change keys to modify 'button held' property on entity so the entity can make the decisions of what to do with the input
+  // Could create a wrapper that takes inputs and handles changing the properties on entities so the entities can just worry about using them
   ["ArrowLeft", "KeyA"].forEach(code => {
     keyManager.addMapping(code, (keyState) => {
       playerEntity.walk.xDir += keyState ? -1 : 1;

@@ -28,7 +28,7 @@ export class CutEffect extends Effect {
   }
 
   draw(context) {
-    this.spriteSheet.drawAnim('leaves', context, 0, 0, this.time)
+    this.spriteSheet.drawTileAnim('leaves', context, 0, 0, this.time)
   }
 
   show(x, y) {

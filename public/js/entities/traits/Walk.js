@@ -17,6 +17,7 @@ export default class Walk {
 
   update(entity, deltaTime) {
     // TODO BUGGO If Up and Right held then Up released and Down pressed, Up animation still shows
+    // TODO BUGGO If looking down and Up and Left/Right are pressed simultaniously, down animation still shows
     if (this.xDir !== 0 && this.yDir === 0) {
       this.heading.x = this.xDir;
       this.heading.y = 0;
